@@ -1,0 +1,19 @@
+.footer{
+    width: 100vw;
+    text-align: center;
+    display: flex;
+    height: 50px;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer p {
+    background-color: darkmagenta;
+    width: 100%;
+    height: 100%;
+    line-height: 3;
+    margin: 0;
+    font-size: 110%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: ghostwhite;
+}

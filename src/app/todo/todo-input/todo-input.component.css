@@ -1,0 +1,10 @@
+.todo-input {
+    width: 70%;
+    margin: 0 auto; 
+}
+button{
+    width: 20%;
+    padding: 0 auto;
+    height: 40px;
+    font-size: 110%;
+}
