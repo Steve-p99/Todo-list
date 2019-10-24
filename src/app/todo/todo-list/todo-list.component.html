@@ -3,7 +3,7 @@
     <mat-list-item class="list-item" *ngFor="let items of todoListItems;let id=index" cdkDrag>
         <div class="list-item-description" [ngClass]="{done: items.completed}">
             {{items.todo}}
-            <div *cdkDragPreview class="list-item" style="width: 600px">{{ items.todo }}</div>
+            <!-- <div *cdkDragPreview class="list-item" style="width: 600px">{{ items.todo }}</div> -->
         </div>
         <div>
             <button mat-button (click)="onTaskCheck(id)">

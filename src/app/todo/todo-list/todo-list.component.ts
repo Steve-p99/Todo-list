@@ -13,9 +13,9 @@ export class TodoListComponent implements OnInit {
 
   constructor(private todoList: TodoService) { }
 
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.todoListItems, event.previousIndex, event.currentIndex);
-  }
+  // drop(event: CdkDragDrop<string[]>) {
+  //   moveItemInArray(this.todoListItems, event.previousIndex, event.currentIndex);
+  // }
 
   ngOnInit() {
     this.todoListItems = this.todoList.todoList

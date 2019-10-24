@@ -3,9 +3,10 @@ app-todo-header {
 }
 
 .todo-body {
-    height: 80vh;
+    height: 75vh;
     width: 60%;
     margin: 1rem auto;
+    background-color: silver;
 }
 
 app-todo-input {
