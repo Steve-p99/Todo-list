@@ -1,0 +1,18 @@
+<button mat-mini-fab color="on" aria-label="To Start Recording" *ngIf="!isRecording && !blobUrl" (click)="startRecording()">
+    <mat-icon>mic</mat-icon>
+</button>
+<button mat-mini-fab color="off" aria-label="To Stop Recording" *ngIf="isRecording && !blobUrl" (click)="stopRecording()">
+    <mat-icon>mic_off</mat-icon>
+</button>
+<button mat-mini-fab color="del" aria-label="To Delete Recording" *ngIf="!isRecording && blobUrl" (click)="clearRecordedData()">
+    <mat-icon>delete</mat-icon>
+</button>
+<br>
+<div *ngIf="isRecording && !blobUrl"> {{recordedTime}} </div>
+<div>
+    <audio *ngIf="!isRecording && blobUrl"  controls>
+        <source [src]="blobUrl" type="audio/webm">
+    </audio>
+</div>
+
+

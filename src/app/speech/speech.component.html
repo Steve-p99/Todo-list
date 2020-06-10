@@ -1,0 +1,11 @@
+<button mat-mini-fab color="on" aria-label="To Start Recording" (click)="initiateRecording()" class="onbutton" *ngIf="!recording">
+    <mat-icon>mic</mat-icon>
+</button>
+<button mat-mini-fab color="off" aria-label="To Stop Recording" (click)="stopRecording()" class="offbutton" *ngIf="recording">
+    <mat-icon>mic_off</mat-icon>
+</button>
+<br><br>
+<audio controls="" *ngIf="url && !recording">
+    <source [src]="sanitize(url)" type="audio/wav">
+</audio>
+

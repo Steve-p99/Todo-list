@@ -12,6 +12,9 @@ import { DragDropModule } from '@angular/cdk/drag-drop'
 
 import {MatToolbarModule, MatCardModule, MatInputModule, MatButtonModule, MatExpansionModule, MatListModule,  MatIconModule} from '@angular/material';
 import { TodoFooterComponent } from './todo/todo-footer/todo-footer.component';
+import { SpeechComponent } from './speech/speech.component';
+import { SpeechesComponent } from './speeches/speeches.component';
+import { AudioRecordingService } from './speeches/rec.service';
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import { TodoFooterComponent } from './todo/todo-footer/todo-footer.component';
     TodoInputComponent,
     TodoHeaderComponent,
     TodoListComponent,
-    TodoFooterComponent
+    TodoFooterComponent,
+    SpeechComponent,
+    SpeechesComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +41,7 @@ import { TodoFooterComponent } from './todo/todo-footer/todo-footer.component';
     MatIconModule,
     DragDropModule
   ],
-  providers: [],
+  providers: [AudioRecordingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
