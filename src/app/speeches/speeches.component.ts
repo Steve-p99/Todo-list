@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AudioRecordingService } from './rec.service';
 import { DomSanitizer } from '@angular/platform-browser';
+import { DataTransferService } from '../data-transfer.service'
 
 @Component({
   selector: 'app-speeches',
@@ -13,7 +14,7 @@ export class SpeechesComponent implements OnDestroy {
   recordedTime;
   blobUrl;
 
-  constructor(private audioRecordingService: AudioRecordingService, private sanitizer: DomSanitizer) {
+  constructor(private audioRecordingService: AudioRecordingService, private sanitizer: DomSanitizer, private transfer: DataTransferService) {
 
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
@@ -57,21 +58,9 @@ export class SpeechesComponent implements OnDestroy {
     var formData = new FormData();
     formData.append(fileType + '-filename', fileName);
     formData.append(fileType + '-blob', this.blobUrl);
-
-    xhr('save.php', formData, function (fileURL) {
-        window.open(fileURL);
-    });
-
-    function xhr(url, data, callback) {
-        var request = new XMLHttpRequest();
-        request.onreadystatechange = function () {
-            if (request.readyState == 4 && request.status == 200) {
-                callback(location.href + request.responseText);
-            }
-        };
-        request.open('POST', url);
-        request.send(data);
-    }
+    console.log(formData);
+    this.transfer.additem(formData);
+    
   }
 
 

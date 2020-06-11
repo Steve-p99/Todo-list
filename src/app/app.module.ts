@@ -15,7 +15,7 @@ import { TodoFooterComponent } from './todo/todo-footer/todo-footer.component';
 import { SpeechComponent } from './speech/speech.component';
 import { SpeechesComponent } from './speeches/speeches.component';
 import { AudioRecordingService } from './speeches/rec.service';
-
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -39,7 +39,8 @@ import { AudioRecordingService } from './speeches/rec.service';
     MatExpansionModule,
     MatListModule,
     MatIconModule,
-    DragDropModule
+    DragDropModule,
+    HttpClientModule
   ],
   providers: [AudioRecordingService],
   bootstrap: [AppComponent]
