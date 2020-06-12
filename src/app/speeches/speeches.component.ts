@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { AudioRecordingService } from './rec.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DataTransferService } from '../data-transfer.service'
+import { title } from 'process';
 
 @Component({
   selector: 'app-speeches',
@@ -48,6 +49,7 @@ export class SpeechesComponent implements OnDestroy {
       this.audioRecordingService.stopRecording();
       this.isRecording = false;
       this.uploadRecording();
+      //console.log(this.blobUrl[title]);
     }
   }
 
@@ -57,7 +59,7 @@ export class SpeechesComponent implements OnDestroy {
 
     var formData = new FormData();
     formData.append(fileType + '-filename', fileName);
-    formData.append(fileType + '-blob', this.blobUrl);
+    formData.append(fileType + '-blob', this.audioRecordingService.getBlob());
     console.log(formData);
     this.transfer.additem(formData);
     

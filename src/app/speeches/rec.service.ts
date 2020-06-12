@@ -20,6 +20,7 @@ export class AudioRecordingService {
   private _recorded = new Subject<RecordedAudioOutput>();
   private _recordingTime = new Subject<string>();
   private _recordingFailed = new Subject<string>();
+  private bob;
 
 
   getRecordedBlob(): Observable<RecordedAudioOutput> {
@@ -92,15 +93,19 @@ export class AudioRecordingService {
     if (this.recorder) {
       this.recorder.stop((blob) => {
         if (this.startTime) {
-          const mp3Name = encodeURIComponent('audio_' + new Date().getTime() + '.mp3');
+          const mp3Name = encodeURIComponent('audio_' + new Date().getTime() + '.wav');
           this.stopMedia();
           this._recorded.next({ blob: blob, title: mp3Name });
+          this.bob=blob;
         }
       }, () => {
         this.stopMedia();
         this._recordingFailed.next();
       });
     }
+  }
+  getBlob(){
+    return this.bob;
   }
 
   private stopMedia() {
