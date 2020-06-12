@@ -16,6 +16,7 @@ export class SpeechesComponent implements OnDestroy {
   blobUrl;
 
   constructor(private audioRecordingService: AudioRecordingService, private sanitizer: DomSanitizer, private transfer: DataTransferService) {
+  
 
     this.audioRecordingService.recordingFailed().subscribe(() => {
       this.isRecording = false;
@@ -28,8 +29,8 @@ export class SpeechesComponent implements OnDestroy {
     this.audioRecordingService.getRecordedBlob().subscribe((data) => {
       this.blobUrl = this.sanitizer.bypassSecurityTrustUrl(URL.createObjectURL(data.blob));
     });
+  
   }
-
   startRecording() {
     if (!this.isRecording) {
       this.isRecording = true;
@@ -48,7 +49,6 @@ export class SpeechesComponent implements OnDestroy {
     if (this.isRecording) {
       this.audioRecordingService.stopRecording();
       this.isRecording = false;
-      this.uploadRecording();
       //console.log(this.blobUrl[title]);
     }
   }
@@ -67,6 +67,10 @@ export class SpeechesComponent implements OnDestroy {
 
 
   clearRecordedData() {
+    if(this.blobUrl){
+      this.uploadRecording();  
+    }
+    this.uploadRecording();
     this.blobUrl = null;
   }
 

@@ -22,13 +22,13 @@ export class DataTransferService {
 // Helper function to send 
  xhr("http://localhost/save.php", aud, function (fileURL) {
           console.log('save.php');
-          //window.open(fileURL);
+          window.open(fileURL);
       });
       function xhr(url, data, callback) {
           var request = new XMLHttpRequest();
           request.onreadystatechange = function () {
-                  console.log("hello "+ request.responseText);
-                  callback(location.href + request.responseText);
+                  console.log("http://localhost/" + request.responseText);
+                  callback("http://localhost/uploads")// + request.responseText);
           };
          request.open('POST', url);
           request.send(data);
