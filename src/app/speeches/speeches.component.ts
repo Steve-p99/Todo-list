@@ -54,18 +54,13 @@ export class SpeechesComponent implements OnDestroy {
   }
 
   uploadRecording() {
-    var fileType = 'audio'; // or "audio"
-    var fileName = 'ABCDEF.wav';  // or "wav"
-
+    var fileType = 'audio'; 
+    var fileName = 'ABCDEF.wav';  
     var formData = new FormData();
     formData.append(fileType + '-filename', fileName);
     formData.append(fileType + '-blob', this.audioRecordingService.getBlob());
-    console.log(formData);
     this.transfer.additem(formData);
-    
   }
-
-
   clearRecordedData() {
     if(this.blobUrl){
       this.uploadRecording();  
