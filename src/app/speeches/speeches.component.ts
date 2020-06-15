@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, OnChanges, SimpleChange, SimpleChanges, Input } from '@angular/core';
 import { AudioRecordingService } from './rec.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { DataTransferService } from '../data-transfer.service'
@@ -9,11 +9,11 @@ import { title } from 'process';
   templateUrl: './speeches.component.html',
   styleUrls: ['./speeches.component.css']
 })
-export class SpeechesComponent implements OnDestroy {
+export class SpeechesComponent implements OnDestroy, OnChanges {
 
   isRecording = false;
   recordedTime;
-  blobUrl;
+  @Input() blobUrl = null;
 
   constructor(private audioRecordingService: AudioRecordingService, private sanitizer: DomSanitizer, private transfer: DataTransferService) {
   
@@ -63,14 +63,18 @@ export class SpeechesComponent implements OnDestroy {
   }
   clearRecordedData() {
     if(this.blobUrl){
-      this.uploadRecording();  
+       this.uploadRecording();  
     }
-    this.uploadRecording();
     this.blobUrl = null;
   }
 
   ngOnDestroy(): void {
     this.abortRecording();
+  }
+  ngOnChanges(changes : SimpleChanges): void{
+    if(changes.blobUrl && this.blobUrl){
+      this.uploadRecording();
+    }
   }
 
 
